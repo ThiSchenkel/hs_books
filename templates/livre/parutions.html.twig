@@ -1,0 +1,32 @@
+{% extends 'layout.html.twig' %} 
+
+{% block title %} {{ parent() }}Parutions{% endblock %} 
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md6 col-lg-12 col-sm-12 mt-3">
+        {% for livre in livre %}
+            <div class="card">
+                <div class="card-horizontal">
+                    <div class="img-square-wrapper">
+                        <img  src="{{ asset('photosLivre/' ~ livre.photoCouv) }}" alt="Le Médaillon">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title my-5">{{ livre.titre }}</h4>
+                        <h6>Résumé : {{ livre.resume}}</h6>
+                        <h6>Extrait : {{ livre.extrait}}</h6>
+                        <h6>Stock : </h6>
+
+                        <a href="{{ path("app_home")}}"><i class="fas fa-arrow-rotate-left text-dark "></i></a>
+
+                        {# <a href=" {{path("panier_add", {id: livre.id})}}  "><i class="fas fa-basket-shopping text-danger"></i></a> #}
+                        
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

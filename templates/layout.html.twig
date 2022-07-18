@@ -22,7 +22,7 @@
             <a class="nav-link" href=" {{ path("app_home")}}"> Accueil </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href=""> Parutions</a>
+            <a class="nav-link" href="{{ path("livre_parution")}}"> Parutions</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href=""> A propos</a>
@@ -50,7 +50,7 @@
               Admin
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="">Ajout livres</a></li>
+              <li><a class="dropdown-item" href="{{ path("livre_ajout")}}">Ajout livres</a></li>
               <li><a class="dropdown-item" href="">Liste livres</a></li>
               <li><a class="dropdown-item" href="">Ajout categorie</a></li>
             </ul>
@@ -62,6 +62,11 @@
 </header>
 
 <main class="container mb-5 pb-5">
+{% for message in app.flashes ('success') %}
+   <div class="alert alert-success text-center">
+     <p> {{message}} </p>
+   </div>
+ {% endfor %}
   {% block content %} 
    {% endblock %}
 </main>

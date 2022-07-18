@@ -52,10 +52,6 @@ class Livre
      */
     private $dateDeCreation;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $dateDeModification;
 
     public function getId(): ?int
     {
@@ -142,18 +138,6 @@ class Livre
     public function setDateDeCreation(\DateTimeInterface $dateDeCreation): self
     {
         $this->dateDeCreation = $dateDeCreation;
-
-        return $this;
-    }
-
-    public function getDateDeModification(): ?\DateTimeInterface
-    {
-        return $this->dateDeModification;
-    }
-
-    public function setDateDeModification(\DateTimeInterface $dateDeModification): self
-    {
-        $this->dateDeModification = $dateDeModification;
 
         return $this;
     }
