@@ -1,0 +1,82 @@
+{% extends "base.html.twig" %} 
+
+{% block body %} 
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href=" {{ path("app_home")}}">Hannah Stazya Books</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href=" {{ path("app_home")}}"> Accueil </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""> Parutions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""> A propos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""> Inscription </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""> Connexion </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""> Deconnexion </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""> Profil </a>
+          </li>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Admin
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="">Ajout livres</a></li>
+              <li><a class="dropdown-item" href="">Liste livres</a></li>
+              <li><a class="dropdown-item" href="">Ajout categorie</a></li>
+            </ul>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main class="container mb-5 pb-5">
+  {% block content %} 
+   {% endblock %}
+</main>
+
+<footer class="fixed-bottom bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link" href=""> © Hannah Stazya - 2022 </a></li>
+        <li class="nav-item"><a class="nav-link" href=""> CGV</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href=""> Nous contacter </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</footer>
+{% endblock body %}
