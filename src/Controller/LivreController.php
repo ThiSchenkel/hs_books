@@ -33,39 +33,7 @@ class LivreController extends AbstractController
     }
 
 
-    /**
-     * @Route("/add", name="ajout")
-     */
-        public function ajout(ManagerRegistry $doctrine, Request $request, SluggerInterface $slugger)
-    {
-        $livre = new Livre();
-        $form = $this->createForm(LivreType::class, $livre);
-        $form->handleRequest($request);
-
-        if($form->isSubmitted()&& $form->isValid()){
-            $livre->setdateDeCreation ( new DateTime("now"));
-
-            $file = $form->get('photoCouv')->getData();
-            $fileName = $slugger->slug($livre->getTitre()) . uniqid() . '.' . $file->guessExtension();
-
-            try{
-                $file->move($this->getParameter('photo_livre'), $fileName);
-            }catch(FileException $e){
-            }
-            $livre->setPhotoCouv($fileName);
-
-            $manager=$doctrine->getManager();
-            $manager->persist($livre);
-            $manager->flush();
-
-             $this->addFlash('success', "La fiche du livre a bien été ajoutée");
-
-            return $this->redirectToRoute('livre_ajout');
-        }
-        return $this->render('livre/formLivre.html.twig', [
-            'formLivre'=>$form->createView()
-        ]);
-    }
+   
 
 
 
