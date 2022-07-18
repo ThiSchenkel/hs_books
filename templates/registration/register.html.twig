@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %} 
+
+{% block title %} S'inscrire{% endblock %}
+
+{% block content %}
+
+<div class="card w-75 mx-auto">
+  <h1 class="card-header text-center text-dark" style="margin: 5%">
+    S'inscrire
+  </h1>
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.nom) }}
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.pseudo) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-outline-danger">S'inscrire</button>
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}
