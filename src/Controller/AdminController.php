@@ -5,7 +5,10 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Livre;
 use App\Form\LivreType;
+use App\Entity\Categorie;
+use App\Form\CategorieType;
 use App\Repository\LivreRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -152,6 +155,36 @@ class AdminController extends AbstractController
 
                 return $this->redirectToRoute("admin_gestion_livre");
     }
+
+    /**
+     * @Route("/categorie-ajout", name="ajout_categorie")
+     */
+    public function ajoutCategorie(Request  $request, CategorieRepository $repo) : Response
+    {
+         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+             $this->addFlash('error', "Veuillez vous connecter pour accéder à la page");
+             return $this->redirectToRoute('app_login');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+             $this->addFlash('error', "Vous n'avez pas les droits pour accéder à cette page");
+             return $this->redirectToRoute('app_home');
+        }
+        
+            $categorie = new Categorie();
+            $form = $this->createForm(CategorieType:: class, $categorie);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $repo->add($categorie, 1);
+                
+                $this->addFlash('success', "La catégorie a bien été ajoutée");
+                return $this->redirectToRoute('admin_ajout_categorie');
+            }
+                return $this->render('admin/formCategorie.html.twig', [
+                'formCategorie'=>$form->createView(),
+        ]);
+    } 
 
 
 

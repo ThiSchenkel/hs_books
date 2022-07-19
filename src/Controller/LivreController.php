@@ -6,6 +6,7 @@ use DateTime;
 use App\Entity\Livre;
 use App\Form\LivreType;
 use App\Repository\LivreRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +33,7 @@ class LivreController extends AbstractController
         ]);
     }
 
-        /**
+    /**
      * @Route("/{id<\d+>}", name="show")
      */
     public function show($id, LivreRepository $repo)
@@ -43,20 +44,22 @@ class LivreController extends AbstractController
         ]);
     }
 
+        /**
+     * @Route("/categorie-{id<\d+>}", name="livre_categorie")
+     */
+    public function categorieLivres($id, CategorieRepository $repo)
+    {
+        $categorie=$repo->find($id);
+        $categories= $repo->findAll();
+
+        return $this->render('livre/parutions.html.twig', [
+            'livre'=>$categorie->getLivres(),
+            'categories'=>$categories
+        ]);
+    }
+
 
    
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

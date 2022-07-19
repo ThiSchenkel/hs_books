@@ -10,7 +10,7 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">Titre</th>
-      <th scope="col">Résumé</th>
+      <th scope="col">Catégorie</th>
       <th scope="col">Photo couverture</th>
       <th scope="col">Prix</th>
       <th scope="col">Stock</th>
@@ -23,7 +23,7 @@
     <tr>
       <th scope="row">{{ livre.id}}</th>
       <td>{{ livre.titre}}</td>
-      <td>{{ livre.resume | slice(0,30)}}...</td>
+      <td>{{ livre.categorie.nom }}</td>
       <td><img width="15%" src="{{ asset('photosLivre/' ~ livre.photoCouv) }}" alt="{{livre.titre}}"></td>
       <td>{{ livre.prix}}€</td>
       <td>{{ livre.stock}}</td>
