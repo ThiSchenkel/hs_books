@@ -29,6 +29,11 @@ class Categorie
      */
     private $livres;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="categories")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->livres = new ArrayCollection();

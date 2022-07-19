@@ -35,6 +35,9 @@
             <a class="nav-link" href="{{ path("app_login")}}"> Connexion </a>
           </li>
            {% endif %}
+          <li class="nav-item">
+              <a class="nav-link" href="{{path("panier_show")}}" ><i class="fas fa-bag-shopping mx-1 text-light" alt="Vos achats"></i></a>
+              </li>
            {% if is_granted( 'IS_AUTHENTICATED_FULLY') %}
           <li class="nav-item">
             <a class="nav-link" href=""> Profil </a>
@@ -70,6 +73,11 @@
 <main class="container mb-5 pb-5">
 {% for message in app.flashes ('success') %}
    <div class="alert alert-success text-center">
+     <p> {{message}} </p>
+   </div>
+ {% endfor %}
+ {% for message in app.flashes ('error') %}
+   <div class="alert alert-danger text-center">
      <p> {{message}} </p>
    </div>
  {% endfor %}

@@ -21,8 +21,7 @@
                         <h6 class='text-danger'>Prix : {{ livre.prix}}€</h6>
 
                         <a href="{{ path("livre_parution")}}"><i class="fas fa-arrow-rotate-left text-dark "></i></a>
-
-                        <a href=""><i class="fas fa-basket-shopping text-danger"></i></a>
+                        <a href="{{ path("panier_add", {id: livre.id})}}"><i class="fas fa-basket-shopping text-danger"></i></a>
                         
                     </div>
                 </div>
