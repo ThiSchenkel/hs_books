@@ -9,18 +9,19 @@
             <div class="card">
                 <div class="card-horizontal">
                     <div class="img-square-wrapper">
-                        <img width="60%" src="{{ asset('photoLivre/' ~ livre.photoCouv) }}">
+                        <img  src="{{ asset('photosLivre/' ~ livre.photoCouv) }}">
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title my-5">{{ livre.titre }}</h4>
-                        <h6>Résumé : {{ livre.resume}}</h6>
-                        <h6>Extrait : {{ livre.extrait}}</h6>
-                        <h6>Stock : </h6>
+                        <h4 class="card-title my-3">{{ livre.titre }}</h4><br><br>
+                        <h6 ><b>Résumé </b> <br><br>{{ livre.resume}}</h6><br>
+                        <h6 ><b>Extrait </b> <br></h6>
+                        <q>{{ livre.extrait}}</q><br><br>
+                        <h6><b>Stock : {{ livre.stock}}</h6>
                         <h6 class='text-danger'>Prix : {{ livre.prix}}€</h6>
 
-                        <a href="{{ path("app_home")}}"><i class="fas fa-arrow-rotate-left text-dark "></i></a>
+                        <a href="{{ path("livre_parution")}}"><i class="fas fa-arrow-rotate-left text-dark "></i></a>
 
-                        {# <a href=" {{path("panier_add", {id: livre.id})}}  "><i class="fas fa-basket-shopping text-danger"></i></a> #}
+                        <a href=""><i class="fas fa-basket-shopping text-danger"></i></a>
                         
                     </div>
                 </div>

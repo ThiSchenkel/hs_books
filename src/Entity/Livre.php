@@ -52,6 +52,16 @@ class Livre
      */
     private $dateDeCreation;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $prix;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $stock;
+
 
     public function getId(): ?int
     {
@@ -138,6 +148,30 @@ class Livre
     public function setDateDeCreation(\DateTimeInterface $dateDeCreation): self
     {
         $this->dateDeCreation = $dateDeCreation;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): self
+    {
+        $this->stock = $stock;
 
         return $this;
     }

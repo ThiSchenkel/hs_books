@@ -42,7 +42,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ path("app_logout")}}"> Deconnexion </a>
           </li>
-         
+         {% if is_granted( 'IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN') %}
           <div class="dropdown">
             <button
               class="btn btn-secondary dropdown-toggle"
@@ -55,10 +55,11 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="{{ path("admin_ajout_livre")}}">Ajout livres</a></li>
-              <li><a class="dropdown-item" href="">Liste livres</a></li>
+              <li><a class="dropdown-item" href="{{ path("admin_gestion_livre")}}">Liste livres</a></li>
               <li><a class="dropdown-item" href="">Ajout categorie</a></li>
             </ul>
           </div>
+           {% endif %}
            {% endif %}
         </ul>
       </div>

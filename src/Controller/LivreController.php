@@ -32,6 +32,17 @@ class LivreController extends AbstractController
         ]);
     }
 
+        /**
+     * @Route("/{id<\d+>}", name="show")
+     */
+    public function show($id, LivreRepository $repo)
+    {
+        $livre=$repo->find($id);
+        return $this->render('livre/showOne.html.twig', [
+            'livre'=>$livre
+        ]);
+    }
+
 
    
 

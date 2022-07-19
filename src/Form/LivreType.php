@@ -22,6 +22,8 @@ class LivreType extends AbstractType
                 'required'=>false
             ])
             ->add('teaser')
+            ->add('stock')
+            ->add('prix')
             ->add('envoyer', SubmitType::class)
         ;
     }
