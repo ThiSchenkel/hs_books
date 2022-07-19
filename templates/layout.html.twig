@@ -42,9 +42,6 @@
           <li class="nav-item">
             <a class="nav-link" href=""> Profil </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ path("app_logout")}}"> Deconnexion </a>
-          </li>
          {% if is_granted( 'IS_AUTHENTICATED_FULLY') and is_granted('ROLE_ADMIN') %}
           <div class="dropdown">
             <button
@@ -63,9 +60,13 @@
             </ul>
           </div>
            {% endif %}
-           {% endif %}
+            {% endif %}
         </ul>
       </div>
+      {% if is_granted( 'IS_AUTHENTICATED_FULLY') %}
+        <p class="pr-5  my-auto text-white">Bonjour  {{app.user.prenom}}</p>
+        <a class="nav-link" href="{{path("app_logout")}}"><i class="fas fa-right-from-bracket text-light "></i></a>
+      {% endif %}
     </div>
   </nav>
 </header>

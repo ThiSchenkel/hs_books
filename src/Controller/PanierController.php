@@ -20,7 +20,6 @@ class PanierController extends AbstractController
     public function show(SessionInterface $session, LivreRepository $repo): Response
     {
         $panier = $session->get('panier', []);
-
         $dataPanier =[];
         $total = 0;
 
@@ -57,6 +56,29 @@ class PanierController extends AbstractController
         return $this->redirectToRoute("panier_show");
 
     }
+
+    /**
+     * @Route("/remove/{id<\d+>}", name="remove_livre")
+     */
+    public function remove($id, SessionInterface $session)
+    {
+        $panier = $session->get('panier', []);
+
+        if (!empty($panier[$id])) {
+            if ($panier[$id]>1) {
+               $panier[$id]--;
+            }else{
+                unset($panier[$id]);
+            }
+        }else{
+            $panier[$id]=1; 
+        }
+        $session->set('panier', $panier);
+
+        return $this->redirectToRoute("panier_show");
+
+    }
+
 
     /**
      * @Route("/delete/{id<\d+>}", name="delete_livre")
