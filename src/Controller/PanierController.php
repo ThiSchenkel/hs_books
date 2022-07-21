@@ -20,6 +20,7 @@ class PanierController extends AbstractController
     public function show(SessionInterface $session, LivreRepository $repo): Response
     {
         $panier = $session->get('panier', []);
+
         $dataPanier =[];
         $total = 0;
 
@@ -30,8 +31,9 @@ class PanierController extends AbstractController
                 "livre"=>$livre,
                 "quantite"=> $quantite
             ];
-            $total += $livre->getPrix()*$quantite;
+            $total += $livre->getPrix() * $quantite;
         }
+        
         return $this->render('panier/panier.html.twig', [
             'dataPanier'=> $dataPanier,
             'total'=> $total
@@ -41,20 +43,28 @@ class PanierController extends AbstractController
     /**
      * @Route("/add/{id<\d+>}", name="add")
      */
-    public function add($id, SessionInterface $session , LivreRepository $repo)
+    public function add($id, SessionInterface $session, LivreRepository $repo)
     {
-        $panier = $session->get('panier', []);
-
-        if (empty($panier[$id])) {
-           $panier[$id] = 1; 
-        }else{
-            $panier[$id]++; 
+        $livre = $repo->find($id);
+        if(!$livre){
+            $this->addFlash("error", "Ce livre n'existe pas!");
         }
 
+        $stock = $livre->getStock();
+        $panier = $session->get('panier', []);
+        if ($stock <= 0) {
+             $this->addFlash("error", "Nous sommes désolés, il y a rupture de stock! Vous pouvez nous contacter pour pré commander!");
+             return $this->redirectToRoute("panier_show");
+        }else{
+                if (empty($panier[$id])) {
+                    $panier[$id] = 1; 
+            }else{
+                    $panier[$id]++;
+                    $this->addFlash("success", "Votre sélection est dans le panier!"); 
+            }
+        }
         $session->set('panier', $panier);
-
         return $this->redirectToRoute("panier_show");
-
     }
 
     /**
@@ -70,13 +80,11 @@ class PanierController extends AbstractController
             }else{
                 unset($panier[$id]);
             }
-        }else{
-            $panier[$id]=1; 
         }
+
         $session->set('panier', $panier);
 
         return $this->redirectToRoute("panier_show");
-
     }
 
 
@@ -98,6 +106,18 @@ class PanierController extends AbstractController
 
         $session->set("panier", $panier);
         $this->addFlash("success", "Le livre a bien été retiré du panier.");
+
+        return $this->redirectToRoute("panier_show");
+    }
+
+    /**
+     * @Route("/delete-all", name="delete_all")
+     */
+    public function deleteAll(SessionInterface $session) : Response
+    {
+
+        $session->remove("panier");
+        $this->addFlash("success", "Votre panier est vide");
 
         return $this->redirectToRoute("panier_show");
     } 

@@ -43,8 +43,8 @@ class CommandeController extends AbstractController
         $user = $this->getUser();
 
         if (!$user) {
-            $this->addFlash("error", "Veuillez vous connecter ou vous inscrire pour passer la commande!");
-            return $this->redirectToRoute("app_home");
+            $this->addFlash("error", "Veuillez vous connecter pour passer la commande!");
+            return $this->redirectToRoute("app_login");
         }
         if (empty($panier)) {
             $this->addFlash("error", "Votre panier est vide, vous ne pouvez pas passer commande!");
