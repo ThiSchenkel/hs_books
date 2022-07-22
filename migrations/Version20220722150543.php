@@ -38,10 +38,10 @@ final class Version20220722150543 extends AbstractMigration
         $this->addSql('ALTER TABLE commande_detail DROP FOREIGN KEY FK_2C52844682EA2E54');
         $this->addSql('ALTER TABLE commande_detail DROP FOREIGN KEY FK_2C52844637D925CB');
         $this->addSql('ALTER TABLE commande DROP FOREIGN KEY FK_6EEAA67DA76ED395');
-        $this->addSql('DROP TABLE categorie');
-        $this->addSql('DROP TABLE commande');
-        $this->addSql('DROP TABLE commande_detail');
-        $this->addSql('DROP TABLE livre');
-        $this->addSql('DROP TABLE user');
+        // $this->addSql('DROP TABLE categorie');
+        // $this->addSql('DROP TABLE commande');
+        // $this->addSql('DROP TABLE commande_detail');
+        // $this->addSql('DROP TABLE livre');
+        // $this->addSql('DROP TABLE user');
     }
 }
