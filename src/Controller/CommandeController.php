@@ -64,7 +64,7 @@ class CommandeController extends AbstractController
             ];
             $total += $livre->getPrix()*$quantite;
         }
-
+        
         $commande->setUser($user)
                     ->setDateDeCommande(new DateTime('now'))
                     ->setMontant($total)
@@ -85,6 +85,8 @@ class CommandeController extends AbstractController
                             ;
             
             $repoDet->add($commandeDetail);
+            // $commandeDetail->setLivre($livre->setStock(-1));
+            //  $repoLivre->add($livre->setStock(-1));
         }
 
         $manager->flush();

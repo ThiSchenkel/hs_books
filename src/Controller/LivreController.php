@@ -44,16 +44,18 @@ class LivreController extends AbstractController
         ]);
     }
 
-        /**
-     * @Route("/categorie-{id<\d+>}", name="livre_categorie")
+    /**
+     * @Route("/categorie_{id<\d+>}", name="categorie")
      */
     public function categorieLivres($id, CategorieRepository $repo)
     {
         $categorie=$repo->find($id);
+        $livres = $categorie->getLivres();
         $categories= $repo->findAll();
+        dd($categories);
 
         return $this->render('livre/parutions.html.twig', [
-            'livre'=>$categorie->getLivres(),
+            'livres'=>$livres,
             'categories'=>$categories
         ]);
     }

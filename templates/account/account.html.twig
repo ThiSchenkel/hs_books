@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %} 
+
+{% block title %} {{ parent() }} Mon espace personnel{% endblock %} 
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md6 col-lg-12 col-sm-12 mt-3">
+            
+                
+                    <h1> Espace personnel </h1>
+                    <h6> Bienvenue <b class="text-success">{{app.user.prenom}}</b> sur votre espace.</6>
+                    <p> Vous allez pouvoir gérer toutes vos informations personnelles. </p>
+                    <hr>
+                    - <a  class="link_perso" href="{{path("account_password")}}">Modifier mon mot de passe </a><br>
+                    <hr>
+                    
+             
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

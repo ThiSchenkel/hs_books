@@ -53,8 +53,8 @@ class PanierController extends AbstractController
         $stock = $livre->getStock();
         $panier = $session->get('panier', []);
         if ($stock <= 0) {
-             $this->addFlash("error", "Nous sommes désolés, il y a rupture de stock! Vous pouvez nous contacter pour pré commander!");
-             return $this->redirectToRoute("panier_show");
+             $this->addFlash("error", "Nous sommes désolés, il y a rupture de stock! Vous pouvez nous contacter pour précommander!");
+             return $this->redirectToRoute("livre_parution");
         }else{
                 if (empty($panier[$id])) {
                     $panier[$id] = 1; 

@@ -7,6 +7,7 @@ use App\Entity\Livre;
 use App\Form\LivreType;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
+use App\Repository\UserRepository;
 use App\Repository\LivreRepository;
 use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -185,6 +186,28 @@ class AdminController extends AbstractController
                 'formCategorie'=>$form->createView(),
         ]);
     } 
+
+        /**
+     * @Route("/gestion-membres", name="gestion_membres")
+     */
+    public function adminMembres(UserRepository $repo): Response
+    {
+         if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+             $this->addFlash('error', "Veuillez vous connecter pour accéder à la page");
+             return $this->redirectToRoute('app_login');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN')) {
+             $this->addFlash('error', "Vous n'avez pas les droits pour accéder à cette page");
+             return $this->redirectToRoute('app_home');
+        }
+
+        $user=$repo->findAll();
+
+        return $this->render('admin/gestionMembres.html.twig', [
+            'user'=>$user
+        ]);
+    }
 
 
 

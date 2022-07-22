@@ -34,7 +34,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-            $this->addFlash('success', "Votre inscription a bien été prise en compte!!! Vous pouvez vous connecter quand vous le souhaitez.");
+            $this->addFlash('success', "Votre inscription a bien été prise en compte! Vous pouvez vous connecter et accéder à votres espace personnel.");
             return $this->redirectToRoute('livre_parution');
         }
 
