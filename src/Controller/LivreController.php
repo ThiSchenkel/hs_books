@@ -27,10 +27,10 @@ class LivreController extends AbstractController
      */
     public function parution(LivreRepository $repo, CategorieRepository $repoCat)
     {
-        $livre=$repo->findAll();
+        $livres=$repo->findAll();
         $categories =$repoCat->findAll();
         return $this->render('livre/parutions.html.twig', [
-            'livre'=>$livre,
+            'livres'=>$livres,
             'categories'=>$categories
         ]);
     }

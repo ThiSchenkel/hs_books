@@ -22,13 +22,13 @@
           </div>
       </div>
 
-      {% for livre in livre %}
+      {% for livres in livres %}
       <div class="col col-md-3 mt-1">
         <div class="card" style="width: 100%">
           <div class="card-body">
-            <h5 class="card-title">{{ livre.titre }}</h5>
-            <p class="card-text">{{ livre.categorie.nom }}</p>
-             <a href="{{path("livre_show", {id: livre.id})}}"><img width="100%" src="{{ asset('photosLivre/' ~ livre.photoCouv) }}" alt="{{livre.titre}}"></a>
+            <h5 class="card-title">{{ livres.titre }}</h5>
+            <p class="card-text">{{ livres.categorie.nom }}</p>
+             <a href="{{path("livre_show", {id: livres.id})}}"><img width="100%" src="{{ asset('photosLivre/' ~ livres.photoCouv) }}" alt="{{livres.titre}}"></a>
           </div>
         </div>
       </div>
