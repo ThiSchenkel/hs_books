@@ -25,11 +25,13 @@ class LivreController extends AbstractController
     /**
      * @Route("/", name="parution")
      */
-    public function parution(LivreRepository $repo)
+    public function parution(LivreRepository $repo, CategorieRepository $repoCat)
     {
         $livre=$repo->findAll();
+        $categories =$repoCat->findAll();
         return $this->render('livre/parutions.html.twig', [
-            'livre'=>$livre
+            'livre'=>$livre,
+            'categories'=>$categories
         ]);
     }
 
@@ -52,7 +54,6 @@ class LivreController extends AbstractController
         $categorie=$repo->find($id);
         $livres = $categorie->getLivres();
         $categories= $repo->findAll();
-        dd($categories);
 
         return $this->render('livre/parutions.html.twig', [
             'livres'=>$livres,

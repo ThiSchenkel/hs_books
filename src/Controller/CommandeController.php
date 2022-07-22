@@ -85,8 +85,8 @@ class CommandeController extends AbstractController
                             ;
             
             $repoDet->add($commandeDetail);
-            // $commandeDetail->setLivre($livre->setStock(-1));
-            //  $repoLivre->add($livre->setStock(-1));
+            $commandeDetail->setLivre($livre);
+            $livre->setStock($livre->getStock()-$quantite);
         }
 
         $manager->flush();

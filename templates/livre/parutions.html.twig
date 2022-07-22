@@ -8,19 +8,19 @@
   <div class="container">
     <div class="row">
 
-      {# <div class="col">
+      <div class="col">
         <div class="card" style="width: 18rem;">
           <div class="card-header"><a class="text-decoration-none" href="{{path("livre_parution")}}" class="text-body">Ambiances</a>
           </div>
                 <ul class="list-group list-group-flush">
-                {% for categorie in categories %}
-                <li class="list-group-item btn btn-dark text-center"><a class="text-decoration-none" href="{{path("livre_categorie",{id:categorie.id})}}">
-                  {{categorie.nom}}
+                {% for categories in categories %}
+                <li class="list-group-item btn btn-dark text-center"><a class="text-decoration-none" href="{{path("livre_categorie",{id:categories.id})}}">
+                  {{categories.nom}}
                 </a></li> 
                 {% endfor %} 
                 </ul>
           </div>
-      </div> #}
+      </div>
 
       {% for livre in livre %}
       <div class="col col-md-3 mt-1">
