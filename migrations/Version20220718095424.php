@@ -20,12 +20,12 @@ final class Version20220718095424 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE livre CHANGE resume resume LONGTEXT NOT NULL, CHANGE retour_lecteur retour_lecteur LONGTEXT DEFAULT NULL, CHANGE date_de_modification date_de_modification DATETIME NOT NULL');
+        $this->addSql('ALTER TABLE livre CHANGE resume resume LONGTEXT NOT NULL, CHANGE retour_lecteur retour_lecteur LONGTEXT DEFAULT NULL');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE livre CHANGE resume resume VARCHAR(255) NOT NULL, CHANGE retour_lecteur retour_lecteur VARCHAR(255) DEFAULT NULL, CHANGE date_de_modification date_de_modification VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE livre CHANGE resume resume VARCHAR(255) NOT NULL, CHANGE retour_lecteur retour_lecteur VARCHAR(255) DEFAULT NULL');
     }
 }
