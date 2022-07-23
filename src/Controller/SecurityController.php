@@ -37,40 +37,6 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    /**
-     * @Route("/passer-en-admin_{id<\d+>}", name="passer_en_admin")
-     */
-    public function passerEnAdmin($id, UserRepository $repo, Request $request) : Response
-    {
-        $secret = "le20clavie";
-
-        $form = $this->createForm(AdminType::class);
-        $form->handleRequest($request);
-
-        $user = $repo->find($id);
-
-        if (!$user) {
-            $this->addFlash("error", "Aucun user trouvé avec l'id : $id");
-
-            return redirectToRoute("app_home");
-        }
-
-        if ($form->isSubmitted()&& $form->isValid()) {
-            if ($form->get('secret')->getData()==$secret){
-            $user->setRoles(["ROLE_ADMIN"]);
-            }else{
-                $this->addFlash("error", "Vous n'avez pas les droits pour cette action, veuillez contacter l'admin");
-                return redirectToRoute("app_home");
-            }
-            $repo->add($user, 1);
-            $this->addFlash("success", "Vous êtes désormais Admin, veuillez vous reconnecter pour profiter de vos prévilèges");
-            return $this->redirectToRoute("app_home");
-        }
-
-        return $this->render("security/passerEnAdmin.html.twig", [
-            'user'=>$user,
-            'formAdmin'=>$form->createView()
-        ]);
-    }
+    
 
 }
